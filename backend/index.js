@@ -1,8 +1,8 @@
 import express from "express";
-import { routes } from "./backend/routes";
+import { routes } from "./routes";
 import mongoose from "mongoose";
 import path from "path";
-import CONFIG from "./config";
+import CONFIG from "../config";
 
 const app = express();
 const PORT = process.env.PORT;

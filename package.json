@@ -4,9 +4,12 @@
     "description": "Enrollment form to join Jason crew",
     "main": "index.js",
     "scripts": {
+        "clean": "rm -rf build && mkdir build",
+        "build-babel": "babel -d ./build ./backend -s",
+        "build": "npm run clean && npm run build-babel",
         "buildClient": "cd frontend  && npm run build",
-        "start": "cross-env NODE_ENV=production babel-node index.js",
-        "server": "nodemon ./index.js --exec babel-node -e js",
+        "start": "npm run build && cross-env NODE_ENV=production && node ./build/index.js",
+        "server": "nodemon ./backend/index.js --exec babel-node -e js",
         "client": "cd frontend && npm run start",
         "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\"",
         "heroku-postbuild": "cd frontend && npm install && npm run build"
