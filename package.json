@@ -4,10 +4,12 @@
     "description": "Enrollment form to join Jason crew",
     "main": "index.js",
     "scripts": {
+        "buildClient": "cd frontend  && npm run build",
         "start": "cross-env NODE_ENV=production babel-node index.js",
         "server": "nodemon ./index.js --exec babel-node -e js",
         "client": "cd frontend && npm run start",
-        "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\""
+        "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "author": "Fidomi",
     "license": "ISC",
@@ -15,6 +17,7 @@
         "body-parser": "^1.19.1",
         "concurrently": "^7.0.0",
         "cross-env": "^7.0.3",
+        "dotenv": "^14.3.2",
         "express": "^4.17.2",
         "mongodb": "^4.3.0",
         "mongoose": "^6.1.7",

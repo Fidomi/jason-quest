@@ -38,16 +38,20 @@ const Result = styled.p`
 
 const Resultats = () => {
     const [list, setList] = React.useState(null);
+    const [error, setError] = React.useState(null);
     React.useEffect(() => {
-        axios.get("/api/applicants").then((response) => {
-            setList(response.data);
-        });
+        axios
+            .get("/api/applicants")
+            .then((response) => {
+                setList(response.data);
+            })
+            .catch((err) => setError(err));
     }, []);
-    console.log(list);
 
     return (
         <Layout>
             <Container>
+                {error && <h2>{error.message}</h2>}
                 {list !== null &&
                     list.map((candidat, index) => {
                         return (

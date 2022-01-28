@@ -2,18 +2,24 @@ import express from "express";
 import { routes } from "./backend/routes";
 import mongoose from "mongoose";
 import path from "path";
+import CONFIG from "./config";
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.NODE_ENV === "production" ? 8080 : 5000;
 
 //mongoose connection
 mongoose.Promise = global.Promise;
-mongoose
-    .connect("mongodb://127.0.0.1:27017/jasondb")
-    .catch((error) => console.error(error));
+process.env.NODE_ENV === "production"
+    ? mongoose
+          .connect(CONFIG.connectionString)
+          .catch((error) => console.error(error))
+    : mongoose
+          .connect("mongodb://127.0.0.1:27017/jasondb")
+          .catch((error) => console.error(error));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 process.env.NODE_ENV === "production"
     ? app.use(express.static(path.join(__dirname, "/frontend/build")))
@@ -24,7 +30,7 @@ routes.forEach((route) => {
 });
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/frontend/public/index.html"));
+    res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
 });
 
 app.listen(PORT, () => console.log(`Your server is running on port ${PORT}`));
