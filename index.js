@@ -1,5 +1,5 @@
 import express from "express";
-import { routes } from "./src/routes";
+import { routes } from "./backend/routes";
 import mongoose from "mongoose";
 
 const app = express();

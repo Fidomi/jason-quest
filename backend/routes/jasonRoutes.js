@@ -51,7 +51,6 @@ export const addNewApplicantRoute = {
     method: "post",
     handler: async (req, res) => {
         try {
-            console.log("req.body", req.body);
             const { name, age, height, weight, sport } = req.body;
             const newApplicant = await addNewApplicant(
                 name,
@@ -60,7 +59,6 @@ export const addNewApplicantRoute = {
                 weight,
                 sport
             );
-            console.log("newApplicant", newApplicant);
             if (newApplicant) {
                 res.send(newApplicant);
             } else {
