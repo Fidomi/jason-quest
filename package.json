@@ -6,10 +6,10 @@
     "scripts": {
         "clean": "rm -rf build && mkdir build",
         "build-babel": "babel -d ./build ./backend -s",
-        "build": "npm run clean && npm run build-babel",
+        "buildBack": "npm run clean && npm run build-babel",
         "buildClient": "cd frontend  && npm run build",
-        "launch": "cross-env NODE_ENV=production node ./build/index.js",
-        "start": "npm run build && npm run launch",
+        "start": "cross-env NODE_ENV=production node ./build/index.js",
+        "launch": "npm run build && npm run start",
         "server": "nodemon ./backend/index.js --exec babel-node -e js",
         "client": "cd frontend && npm run start",
         "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\"",
