@@ -1,17 +1,14 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-
-export const ApplicantSchema = new Schema({
-    firstName: {
+export const ApplicantSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: "Entrez votre nom",
+        index: { unique: Boolean },
     },
     age: {
         type: Number,
-        min: 15,
-        max: 50,
-        required: "Entrez votre âge",
+        required: "Entrez votre age",
     },
     height: {
         type: Number,
@@ -23,7 +20,7 @@ export const ApplicantSchema = new Schema({
     },
     sport: {
         type: Boolean,
-        required: "Faites-vous plus de 2 heures de sport chaque jour?",
+        required: "Faites-vous du sport plus de deux fois par semaine?",
     },
     created_date: {
         type: Date,
