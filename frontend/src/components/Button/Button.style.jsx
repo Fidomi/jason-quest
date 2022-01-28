@@ -51,7 +51,7 @@ export const StyledButton = styled.button`
     text-transform: uppercase;
     border-radius: 3px;
     cursor: pointer;
-    disable: ;
+    max-width: 16rem;
     ${(props) => {
         return SIZE[props.buttonSize];
     }};
