@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
     background-color: var(--white);
     index: 1000;
     filter: drop-shadow(0 0.2rem 0.25rem var(--grey-4));
+    z-index: 1000;
     @media ${device.tablet} {
         height: 80px;
     }
