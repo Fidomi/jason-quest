@@ -1,0 +1,1 @@
+{"version":3,"sources":["../backend/config.js"],"names":["CONFIG","connectionString"],"mappings":";;;;;AAAA,IAAMA,SAAS;AACXC,sBACI;AAFO,CAAf;kBAIeD,M","file":"config.js","sourcesContent":["const CONFIG = {\r\n    connectionString:\r\n        \"mongodb+srv://fidomi:FI5do9MI10@cluster0.29v42.mongodb.net/jasondb?retryWrites=true&w=majority\",\r\n};\r\nexport default CONFIG;\r\n"]}

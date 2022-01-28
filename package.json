@@ -8,7 +8,8 @@
         "build-babel": "babel -d ./build ./backend -s",
         "build": "npm run clean && npm run build-babel",
         "buildClient": "cd frontend  && npm run build",
-        "start": "npm run build && cross-env NODE_ENV=production && node ./build/index.js",
+        "launch": "cross-env NODE_ENV=production node ./build/index.js",
+        "start": "npm run build && npm run launch",
         "server": "nodemon ./backend/index.js --exec babel-node -e js",
         "client": "cd frontend && npm run start",
         "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\"",
@@ -17,6 +18,7 @@
     "author": "Fidomi",
     "license": "ISC",
     "dependencies": {
+        "babel-polyfill": "^6.26.0",
         "body-parser": "^1.19.1",
         "concurrently": "^7.0.0",
         "cross-env": "^7.0.3",
