@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { ApplicantSchema } from "../models/jasonModel";
-import "babel-polyfill";
 
 const Applicant = mongoose.model("Applicant", ApplicantSchema);
 
