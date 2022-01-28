@@ -86,8 +86,8 @@ const Home = () => {
                         l'Argo!
                     </p>
                     <p>
-                        Si tu es sélectionné, tu seras contacté par Jason en
-                        personne!
+                        Les 50 premiers candidats valides partiront avec Jason!
+                        Dépêche-toi!
                     </p>
                     <Button
                         type="button"
