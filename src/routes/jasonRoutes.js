@@ -1,22 +1,75 @@
 import {
     addNewApplicant,
-    getApplicants,
+    getAllApplicants,
     getApplicantWithID,
 } from "../controllers/jasonControllers";
 
-const routes = (app) => {
-    app.route("/applicant")
-        .get((req, res, next) => {
-            //middleware
-            console.log(`Request from :${req.originalUrl}`);
-            console.log(`Request type :${req.method}`);
-            next();
-        }, getApplicants)
-        .post(addNewApplicant);
-    app.route("/applicant/:applicantID")
-        .get(getApplicantWithID)
-        .put((req, res) => res.send("PUT request successful!"))
-        .delete((req, res) => res.send("DELETE request successful!"));
+export const getAllApplicantsRoute = {
+    path: "/api/applicants",
+    method: "get",
+    handler: async (req, res) => {
+        try {
+            const applicants = await getAllApplicants();
+            if (!applicants) {
+                throw new Error("Il n'existe pas de candidats enregistrés.");
+            } else {
+                res.send(applicants);
+            }
+        } catch (err) {
+            res.status(503).send(err.message);
+        }
+    },
 };
 
-export default routes;
+export const getApplicantByIdRoute = {
+    path: "/api/applicant/:applicantID",
+    method: "get",
+    handler: async (req, res) => {
+        try {
+            if (req.params.applicantID) {
+                const applicant = await getApplicantWithID(
+                    req.params.applicantID
+                );
+                if (!applicant) {
+                    throw new Error("Cet id ne correspond à aucun candidat");
+                } else {
+                    res.send(applicant);
+                }
+            } else {
+                throw new Error(
+                    "Impossible d'accèder à cette requête : il manque l'id du candidat."
+                );
+            }
+        } catch (err) {
+            res.status(503).send(err.message);
+        }
+    },
+};
+
+export const addNewApplicantRoute = {
+    path: "/api/applicant",
+    method: "post",
+    handler: async (req, res) => {
+        try {
+            console.log("req.body", req.body);
+            const { name, age, height, weight, sport } = req.body;
+            const newApplicant = await addNewApplicant(
+                name,
+                age,
+                height,
+                weight,
+                sport
+            );
+            console.log("newApplicant", newApplicant);
+            if (newApplicant) {
+                res.send(newApplicant);
+            } else {
+                throw new Error(
+                    "Impossible d'enregistrer ce nouvel utilisateur."
+                );
+            }
+        } catch (err) {
+            res.status(503).send(err.message);
+        }
+    },
+};
