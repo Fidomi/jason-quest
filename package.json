@@ -9,7 +9,7 @@
         "server": "nodemon ./index.js --exec babel-node -e js",
         "client": "cd frontend && npm run start",
         "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run server\" \"npm run client\"",
-        "heroku-postbuild": "cd client && npm install && npm run build"
+        "heroku-postbuild": "cd frontend && npm install && npm run build"
     },
     "author": "Fidomi",
     "license": "ISC",
