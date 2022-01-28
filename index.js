@@ -5,7 +5,10 @@ import path from "path";
 import CONFIG from "./config";
 
 const app = express();
-const PORT = process.env.NODE_ENV === "production" ? 8080 : 5000;
+const PORT = process.env.PORT;
+if (PORT == null || PORT == "") {
+    PORT = 8000;
+}
 
 //mongoose connection
 mongoose.Promise = global.Promise;
