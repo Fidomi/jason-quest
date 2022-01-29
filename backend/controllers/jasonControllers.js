@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ApplicantSchema } from "../models/jasonModel";
+import { ApplicantSchema } from "../models/jasonModel.js";
 
 const Applicant = mongoose.model("Applicant", ApplicantSchema);
 

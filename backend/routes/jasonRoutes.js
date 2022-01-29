@@ -2,7 +2,7 @@ import {
     addNewApplicant,
     getAllApplicants,
     getApplicantWithID,
-} from "../controllers/jasonControllers";
+} from "../controllers/jasonControllers.js";
 
 export const getAllApplicantsRoute = {
     path: "/api/applicants",

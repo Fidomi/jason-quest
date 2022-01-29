@@ -1,14 +1,18 @@
 import express from "express";
-import { routes } from "./routes";
+import { routes } from "./routes/index.js";
 import mongoose from "mongoose";
 import path from "path";
-import CONFIG from "../config";
+import { fileURLToPath } from "url";
+import CONFIG from "./config.js";
 
 const app = express();
 const PORT = process.env.PORT;
 if (PORT == null || PORT == "") {
     PORT = 8000;
 }
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //mongoose connection
 mongoose.Promise = global.Promise;
@@ -25,8 +29,8 @@ app.use(express.json());
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 process.env.NODE_ENV === "production"
-    ? app.use(express.static(path.join(__dirname, "/frontend/build")))
-    : app.use(express.static(path.join(__dirname, "/frontend/")));
+    ? app.use(express.static(path.join(__dirname, "../frontend/build")))
+    : app.use(express.static(path.join(__dirname, "../frontend/")));
 
 routes.forEach((route) => {
     app[route.method](route.path, route.handler);

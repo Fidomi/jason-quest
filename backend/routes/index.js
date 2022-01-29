@@ -2,7 +2,7 @@ import {
     addNewApplicantRoute,
     getApplicantByIdRoute,
     getAllApplicantsRoute,
-} from "./jasonRoutes";
+} from "./jasonRoutes.js";
 
 export const routes = [
     addNewApplicantRoute,
